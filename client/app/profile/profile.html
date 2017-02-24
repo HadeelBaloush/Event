@@ -1,36 +1,274 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>User Profile</title>
-  </head>
-  <header>
-  	
-<div class="container" ng-repeat="event in why2.events">
-        <div class="row">
-            <div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
-                <ul class="event-list">
-                    <li>
-            <time datetime="">
+<style type="text/css">
+    /* USER PROFILE PAGE */
+ .card {
+    padding: 30px;
+    background-color: rgba(214, 224, 226, 0.2);
+}
+.card.hovercard {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 1);
+}
+.card-background img {
+    -webkit-filter: blur(25px);
+    -moz-filter: blur(25px);
+    -o-filter: blur(25px);
+    -ms-filter: blur(25px);
+    filter: blur(25px);
+    margin-left: -100px;
+    margin-top: -200px;
+    min-width: 130%;
+}
 
-              <span class="day">{{event.date}}</span>
-           </time>
-            <div class="info">
-              <h2 class="title">{{event.eventName}}</h2>
-              <p class="desc"><img style="width: 5%;height: 5%" src="http://www.freeiconspng.com/uploads/red-location-icon-1.png"> {{event.location}}</p>
-              <p class="desc">Mobile : {{event.orgMob}}</p>
-              <ul>
-                <li style="width:50%;"><a ng-href="http://{{event.orgWebsite}}"><span class="fa fa-globe"></span> Website</a></li>
-                <li style="width:50%;"><span class="fa fa-money"></span> ${{event.cost}}</li>
-              </ul>
-            </div>
-          
-          </li>
+.useravatar {
+    top: 15px;
+    left: 0;
+    right: 0;
+}
+.useravatar img {
+    width: 200px;
+    height: 200px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+}
 
-                </ul>
-            </div>
-        </div>
- </div>
+.useravatar i {
+    width: 200px;
+    height: 200px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+    background-color: #fff;
+}
+.card-info {
+    bottom: 14px;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 20px;
+    color: #737373;
+    text-overflow: ellipsis;
+}
+.card-info .card-title {
+    padding:0 5px;
+    font-size: 20px;
+    line-height: 1;
+    color: #262626;
+    background-color: rgba(255, 255, 255, 0.1);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
 
-    </header>
-   
-</html>
+.bottom {
+    padding: 0 20px;
+    margin-bottom: 17px;
+}
+.btn-pref .btn {
+    -webkit-border-radius:0 !important;
+}
+
+</style>
+
+<div id="container" ng-controller="ProfileController" class="ng-scope">
+
+<div class="row" style="
+    overflow: hidden;
+    /* height: 300px; */
+    text-align: center;
+    padding: 50px;
+    background-color: #dedede;
+">
+<div class="useravatar" ng-if="data[0].imgUrl">
+            <img alt="" src="{{ data[0].imgUrl }}">
+</div>
+<div class="useravatar" ng-if="!data[0].imgUrl">
+            <i class="fa fa-user" style="font-size: 80px; line-height: 200px"></i>
+</div>
+<ul class="list-group" style="
+    width: 40%;
+    margin: auto;
+    margin-top: 50px;
+">
+  <li class="list-group-item"><i class="fa fa-user" aria-hidden="true"></i>  {{ data[0].fullName }}</li>
+  <li class="list-group-item"><i class="fa fa-envelope" aria-hidden="true"></i>  {{ data[0].email }}</li>
+  <li class="list-group-item">
+  <i class="fa fa-map-marker" aria-hidden="true"></i>
+     {{ data[0].city }}</li>
+  <li class="list-group-item" ng-if="data[0].orgName"><i class="fa fa-users" aria-hidden="true"></i>  {{ data[0].orgName }}</li>
+  
+</ul></div>
+
+  
+  
+    <div class="row" style="
+    ">
+    <div class="page-header text-center">
+      <h1>Events created by {{ data[0].fullName }}</h1>
+    </div>
+
+    <div class="col-md-8 col-md-offset-2 col-xs-12 event-container" ng-repeat="event in data[0].event">
+  <div class="col-xs-12 container-img" ng-if="!event.imgUrl">
+  </div>
+    <div class="col-xs-12 container-img" style="background-image: url('{{ event.imgUrl }}');" ng-if="event.imgUrl">
+  </div>
+  <div class="col-md-10 col-xs-12" style="
+  margin-bottom: 10px;
+  ">
+  <h3 style="
+  border-bottom: 1px solid #dedede;
+  padding-bottom: 10px;
+  color: #054163;
+  ">{{ event.eventName }} <!-- <small>by ta7seen</small> --></h3>
+  <small style="
+  color:  #b2121d;
+  ">in {{ event.city }}</small>
+  <p>{{ event.desc }}</p>
+    <div class="col-xs-12 text-center" style="
+    margin: auto -15px;">
+    <div class="col-xs-3 container-btn">
+      <a ng-click="attendEvent(event.id)">Going</a>
+    </div>
+    <div class="col-xs-3 container-btn">
+      <a ng-click="interestEvent(event.id)">Intresting</a>
+    </div>
+    <div class="col-xs-3 container-btn">
+      <span style="color: #b2121d"> Cost </span>{{ event.cost }} JOD
+    </div>
+    <div class="col-xs-3 container-btn" ng-if="event.contact">
+      <span style="color: #b2121d"> <i class="fa fa-phone"></i><a href="tel:{{ event.contact }}"> {{ event.contact }} </a></span>
+    </div>
+  </div>
+  </div>
+
+
+  <div class="col-md-2 col-xs-12" style="padding: 0;">
+    <div class="col-md-12 col-xs-4 container-info" style="">
+      <span><b>{{ event.category }}</b></span>
+    </div>
+    <div class="col-md-12 col-xs-4 container-info">
+      <span>Going: {{ event.attend.length }} </span>
+    </div><div class="col-md-12 col-xs-4 container-info">
+    <span>Intrested: {{ event.interest.length }}</span>
+  </div></div>
+</div>    
+
+
+</div>
+
+
+
+<div class="row" style="" ng-if="data[0].attend.length > 0">
+    <div class="page-header text-center">
+      <h1>{{ data[0].fullName }} is going to these events</h1>
+    </div>
+
+<div class="col-md-8 col-md-offset-2 col-xs-12 event-container" ng-repeat="event in data[0].attend">
+  <div class="col-xs-12 container-img" ng-if="!event.imgUrl">
+  </div>
+    <div class="col-xs-12 container-img" style="background-image: url('{{ event.imgUrl }}');" ng-if="event.imgUrl">
+  </div>
+  <div class="col-md-10 col-xs-12" style="
+  margin-bottom: 10px;
+  ">
+  <h3 style="
+  border-bottom: 1px solid #dedede;
+  padding-bottom: 10px;
+  color: #054163;
+  ">{{ event.eventName }} <!-- <small>by ta7seen</small> --></h3>
+  <small style="
+  color:  #b2121d;
+  ">in {{ event.city }}</small>
+  <p>{{ event.desc }}</p>
+    <div class="col-xs-12 text-center" style="
+    margin: auto -15px;">
+    <div class="col-xs-3 container-btn">
+      <a ng-click="attendEvent(event.id)">Going</a>
+    </div>
+    <div class="col-xs-3 container-btn">
+      <a ng-click="interestEvent(event.id)">Intresting</a>
+    </div>
+    <div class="col-xs-3 container-btn">
+      <span style="color: #b2121d"> Cost </span>{{ event.cost }} JOD
+    </div>
+    <div class="col-xs-3 container-btn" ng-if="event.contact">
+      <span style="color: #b2121d"> <i class="fa fa-phone"></i><a href="tel:{{ event.contact }}"> {{ event.contact }} </a></span>
+    </div>
+  </div>
+  </div>
+
+
+  <div class="col-md-2 col-xs-12" style="padding: 0;">
+    <div class="col-md-12 col-xs-4 container-info" style="">
+      <span><b>{{ event.category }}</b></span>
+    </div>
+    <div class="col-md-12 col-xs-4 container-info">
+      <span>Going: {{ event.attend.length }} </span>
+    </div><div class="col-md-12 col-xs-4 container-info">
+    <span>Intrested: {{ event.interest.length }}</span>
+  </div></div>
+</div>    
+
+
+</div>
+
+
+<div class="row" style="" ng-if="data[0].interest.length > 0">
+    <div class="page-header text-center">
+      <h1>{{ data[0].fullName }} is interested in these events</h1>
+    </div>
+
+<div class="col-md-8 col-md-offset-2 col-xs-12 event-container" ng-repeat="event in data[0].interest">
+  <div class="col-xs-12 container-img" ng-if="!event.imgUrl">
+  </div>
+    <div class="col-xs-12 container-img" style="background-image: url('{{ event.imgUrl }}');" ng-if="event.imgUrl">
+  </div>
+  <div class="col-md-10 col-xs-12" style="
+  margin-bottom: 10px;
+  ">
+  <h3 style="
+  border-bottom: 1px solid #dedede;
+  padding-bottom: 10px;
+  color: #054163;
+  ">{{ event.eventName }} <!-- <small>by ta7seen</small> --></h3>
+  <small style="
+  color:  #b2121d;
+  ">in {{ event.city }}</small>
+  <p>{{ event.desc }}</p>
+    <div class="col-xs-12 text-center" style="
+    margin: auto -15px;">
+    <div class="col-xs-3 container-btn">
+      <a ng-click="attendEvent(event.id)">Going</a>
+    </div>
+    <div class="col-xs-3 container-btn">
+      <a ng-click="interestEvent(event.id)">Intresting</a>
+    </div>
+    <div class="col-xs-3 container-btn">
+      <span style="color: #b2121d"> Cost </span>{{ event.cost }} JOD
+    </div>
+    <div class="col-xs-3 container-btn" ng-if="event.contact">
+      <span style="color: #b2121d"> <i class="fa fa-phone"></i><a href="tel:{{ event.contact }}"> {{ event.contact }} </a></span>
+    </div>
+  </div>
+  </div>
+
+
+  <div class="col-md-2 col-xs-12" style="padding: 0;">
+    <div class="col-md-12 col-xs-4 container-info" style="">
+      <span><b>{{ event.category }}</b></span>
+    </div>
+    <div class="col-md-12 col-xs-4 container-info">
+      <span>Going: {{ event.attend.length }} </span>
+    </div><div class="col-md-12 col-xs-4 container-info">
+    <span>Intrested: {{ event.interest.length }}</span>
+  </div></div>
+</div>    
+
+</div></div>

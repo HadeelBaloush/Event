@@ -13,10 +13,10 @@ var User = db.Model.extend({
         return this.hasMany(events, 'userId', 'id');
     },
     attend: function () {
-        return this.hasMany(userAttendEvent, 'eventId', 'id');
+        return this.belongsToMany(events, 'userAttendEvent', 'eventId', 'userId');
     },
     interest: function () {
-        return this.hasMany(userIntersetEvent, 'eventId', 'id');
+        return this.belongsToMany(events, 'userInterestEvent', 'eventId', 'userId');
     }
 });
 

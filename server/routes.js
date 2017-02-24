@@ -3,6 +3,7 @@ var eventController = require('./controller/eventController.js');
 
 module.exports = function (app, express) {
 
+
 app.get('api/topEventsByCity/:city', eventController.getTopCityEvents)
 
 app.post('/api/events', eventController.addEvent);
@@ -17,4 +18,5 @@ app.get('/api/events/:city', eventController.getAllCityEvents);
 app.post('/api/signup', userController.signup);
 app.post('/api/signin', userController.signin);
 app.get('/api/users/:username', userController.getUserProfile);
+
 }

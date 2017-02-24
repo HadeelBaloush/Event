@@ -1,162 +1,140 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Events &mdash;</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
-	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-	<meta name="author" content="FreeHTML5.co" />
+<style>
+#playground-container {
+    height: 500px;
+    overflow: hidden !important;
+    -webkit-overflow-scrolling: touch;
+}
 
-	
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
-	
+.main{
+  margin:50px 15px;
+}
 
+h1.title { 
+  font-size: 50px;
+  font-family: 'Passion One', cursive; 
+  font-weight: 400; 
+}
 
-	<link rel="stylesheet" href="styles/animate.css">
-  <!-- Icomoon Icon Fonts-->
-  <link rel="stylesheet" href="styles/icomoon.css">
-  <!-- Themify Icons-->
-  <link rel="stylesheet" href="styles/themify-icons.css">
-  <!-- Bootstrap  -->
-  <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.css">
+hr{
+  width: 10%;
+  color: #fff;
+}
 
-  <!-- Magnific Popup -->
-  <link rel="stylesheet" href="styles/magnific-popup.css">
+.form-group{
+  margin-bottom: 15px;
+}
 
-  <!-- Owl Carousel  -->
-  <link rel="stylesheet" href="styles/owl.carousel.min.css">
-  <link rel="stylesheet" href="styles/owl.theme.default.min.css">
+label{
+  margin-bottom: 15px;
+}
 
-  <!-- Theme style  -->
-  <link rel="stylesheet" href="styles/style.css">
+input,
+input::-webkit-input-placeholder {
+    font-size: 11px;
+    padding-top: 3px;
+}
 
-  <!-- Modernizr JS -->
-  <script src="lib/modernizr-2.6.2.min.js"></script>
+.main-login{
+  background-color: #fff;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 
-	</head>
-	<body>
-	
-	
-	<div id="page">
+}
+.form-control {
+    height: auto!important;
+padding: 8px 12px !important;
+}
+.input-group {
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+}
+#button {
+    border: 1px solid #ccc;
+    margin-top: 28px;
+    padding: 6px 12px;
+    color: #666;
+    text-shadow: 0 1px #fff;
+    cursor: pointer;
+    -moz-border-radius: 3px 3px;
+    -webkit-border-radius: 3px 3px;
+    border-radius: 3px 3px;
+    -moz-box-shadow: 0 1px #fff inset, 0 1px #ddd;
+    -webkit-box-shadow: 0 1px #fff inset, 0 1px #ddd;
+    box-shadow: 0 1px #fff inset, 0 1px #ddd;
+    background: #f5f5f5;
+    background: -moz-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #eeeeee));
+    background: -webkit-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+    background: -o-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+    background: -ms-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+    background: linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#eeeeee', GradientType=0);
+}
+.main-center{
+  margin-top: 30px;
+  margin: 0 auto;
+  max-width: 500px;
+    padding: 10px 40px;
+  background:#054163;
+      color: #FFF;
+    text-shadow: none;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+-moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
 
-	
-	<div class="page-inner">
-	<nav class="gtco-nav" role="navigation">
-	</nav>
-	
-	<header id="gtco-header" class="gtco-cover" role="banner" style="background-image: url(app/auth/images/img_4.jpg)">
-		<div class="overlay"></div>
-		<div class="gtco-container">
-			<div class="row">
-<div class="col-md-12 col-md-offset-0 text-left">
-					
+}
+span.input-group-addon i {
+    color: #B2121D;
+    font-size: 17px;
+}
 
-					<div class="row row-mt-15em">
-						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
-							<span class="intro-text-small">n3n3 company</span>
-							<h1>Summer Is comming !</h1>	
-						</div>
-						<div class="col-md-4 col-md-push-1 animate-box" data-animate-effect="fadeInRight">
-							<div class="form-wrap">
-								<div class="tab">
-									<ul class="tab-menu">
-										<li class="active gtco-first"><a href="#" data-tab="signup">Organizer Login</a></li>
-										<li class="gtco-second"><a href="#" data-tab="login">User Login</a></li>
-									</ul>
-									<div class="tab-content">
-										<div class="tab-content-inner active" data-content="signup">
-											<form action="#">
-												<div class="row form-group">
-													<div class="col-md-12">
-														<label for="username">Email</label>
-														<input type="text" class="form-control" id="username" ng-model='org.email' required>
-													</div>
-												</div>
-												<div class="row form-group">
-													<div class="col-md-12">
-														<label for="password">Password</label>
-														<input type="password" class="form-control" id="password" ng-model='org.password' required>
-													</div>
-												</div>
-												<div class="row form-group">
-													<div class="col-md-12">
-														<button ng-click="OrgSignin()"  class="btn btn-primary">Login</button>
-														<br>
-														    <a href="#/OrgSignup">Don't have an account? <strong>Create one</strong> ...</a>
+.login-button{
+  margin-top: 5px;
+}
 
-<!-- 
-														<input type="submit" class="btn btn-primary" value="Signup" style="float: right;" href="features.html" > -->
-													</div>
-												</div>
-											</form>	
-										</div>
+.login-register{
+  font-size: 11px;
+  text-align: center;
+}
+</style>
+<div class="container" ng-controller="AuthController">
+      <div class="row main">
+        <div class="main-login main-center">
+        <h2>Sign in</h2>
+          <form class="" method="post" action="#">
 
-										<div class="tab-content-inner" data-content="login">
-											<form action="#">
-												<div class="row form-group">
-													<div class="col-md-12">
-														<label for="username">Email</label>
-														<input type="text" class="form-control" id="username" ng-model='user.email' required>
-													</div>
-												</div>
-												<div class="row form-group">
-													<div class="col-md-12">
-														<label for="password">Password</label>
-														<input type="password" class="form-control" id="password" ng-model='user.password' required >
-													</div>
-												</div>
+            <div class="form-group">
+              <label for="username" class="cols-sm-2 control-label">Username</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                  <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username" ng-model="user.username" required/>
+                </div>
+              </div>
+            </div>
 
-												<div class="row form-group">
-													<div class="col-md-12">
-														<!-- <input type="submit" class="btn btn-primary" value="Login"> -->
-														<button ng-click="userSignin()"  class="btn btn-primary">Login</button>
-														<br>
-
-														<a href="#/userSignup">Don't have an account? <strong>Create one</strong> ...</a>
-
-													<!-- 	<input type="submit" onclick="features.html" class="btn btn-primary" value="Signup" style="float: right;"> -->
-													
-
-													</div>
-												</div>
-											</form>	
-										</div>
-
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-							
-					
-				</div>
-			</div>
-		</div>
-	</header>
-	
+            <div class="form-group">
+              <label for="password" class="cols-sm-2 control-label">Password</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                  <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password" ng-model="user.password" required/>
+                </div>
+              </div>
+            </div>
 
 
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-	
-	<script src="lib/jquery.min.js"></script>
-  <!-- jQuery Easing -->
-  <script src="lib/jquery.easing.1.3.js"></script>
-  <!-- Bootstrap -->
-  <script src="lib/bootstrap.min.js"></script>
-  <!-- Waypoints -->
-  <script src="lib/jquery.waypoints.min.js"></script>
-  <!-- Carousel -->
-  <script src="lib/owl.carousel.min.js"></script>
-  <!-- Magnific Popup -->
-  <script src="lib/jquery.magnific-popup.min.js"></script>
-
-  <script src="lib/magnific-popup-options.js"></script>
-  <!-- Main -->
-  <script src="lib/main.js"></script>
-
-	</body>
-</html>
+            <div class="form-group ">
+              <input type="submit" value="Sign in" ng-click="signin()" target="_blank" id="button" class="btn btn-primary btn-lg btn-block login-button" />
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>

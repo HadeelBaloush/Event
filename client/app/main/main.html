@@ -1,0 +1,140 @@
+<div id="container" ng-controller="MainController">
+
+<div class="row" style="padding: 25px;background: #f5f5f5;min-height: 300px;"><div class="col-md-10 col-md-offset-1 text-center main-intro">
+    <h1>Events are here!</h1><h2 style="font-weight: bold;">New events in your city are waiting for you!</h2>
+    
+    <div class="col-md-3">
+      <i class="fa fa-search main-icon"></i>
+      <br>
+      <span style="">Explore new events</span>
+    </div>
+    <div class="col-md-3">
+      <i class="fa fa-plus-circle main-icon"></i>
+      <br>
+      <span>Create your own events</span></div><div class="col-md-3"><i class="fa fa-users main-icon"></i>
+      <br>
+      <span>Find people in your city</span>
+    </div>
+    <div class="col-md-3">
+      <i class="glyphicon glyphicon-heart main-icon"></i>
+      <br>
+      <span style="
+      ">HAVE FUN!</span>
+    </div>
+  </div></div>
+
+
+    <div class="row text-center" style="margin-bottom: 50px;" id="citySelect">
+    <div class="page-header">
+      <h1>Lets show events in your area! </h1>
+    </div><div class="col-xs-12">
+    <h2>Choose your city first</h2>
+    <br>
+  </div><div class="col-xs-12">
+  <button class="btn btn-lg city-btn" ng-click="getCityEvents('amman')">Amman</button>
+  <button class="btn btn-lg city-btn" ng-click="getCityEvents('irbid')">Irbid</button>
+  <button class="btn btn-lg city-btn" ng-click="getCityEvents('aqaba')">Aqaba</button>
+  <button class="btn btn-lg city-btn" ng-click="getCityEvents('mafraq')">Mafraq</button>
+  <button class="btn btn-lg city-btn" ng-click="getCityEvents('ajloun')">Ajloun</button>
+  </div>
+
+
+
+
+</div>
+<!-- <div class="links"><div class="searchBox">
+  <input type="text" ng-model="searchBox">
+</div> -->
+
+
+
+<div class="row" id="eventList" style="display: none; margin-top: 20px">
+<!--   <div class="row text-center" ng-if="!data.events">
+    <img src="http://loading.io/loader/?use=eyJzaXplIjo2MCwic3BlZWQiOjEsImNiayI6IiNmZmZmZmYiLCJjMSI6IiMwNTQxNjMiLCJjMiI6IjEyIiwiYzMiOiI3IiwiYzQiOiIyMCIsImM1IjoiNSIsImM2IjoiMzAiLCJ0eXBlIjoiZGVmYXVsdCJ9">
+    <h3>Loading ... </h3>
+  </div>
+ -->
+
+<div class="page-header text-center">
+      <h1>Events in {{ data.events[0].city }}</h1>
+    </div>
+  <div class="col-md-8 col-md-offset-2 col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Filter by:</h3>
+      </div>
+      <div class="panel-body" style="
+      text-align: left;
+      ">
+
+      <h4>Category :</h4>
+      <div class="list-group" ng-init="catSelect = {category: ''}">
+        <a class="list-group-item" style="cursor: hand;" ng-repeat="item in data.events" ng-click="catSelect.category = item.category">{{ item.category }}</a>
+        <a class="list-group-item" style="cursor: hand;" ng-click="catSelect.category = ''">All categories</a>
+      </div><div class="navbar-form" role="search" style="margin-bottom: 20px;">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <input type="text" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" placeholder="Search" ng-model="searchBox" style="">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </div>
+
+
+  </div>
+  
+
+</div>
+</div>
+
+
+<div class="col-md-8 col-md-offset-2 col-xs-12 event-container" ng-repeat="event in data.events | filter : searchBox | filter : catSelect">
+  <div class="col-xs-12 container-img" ng-if="!event.imgUrl">
+  </div>
+    <div class="col-xs-12 container-img" style="background-image: url('{{ event.imgUrl }}');" ng-if="event.imgUrl">
+  </div>
+  <div class="col-md-10 col-xs-12" style="
+  margin-bottom: 10px;
+  ">
+  <h3 style="
+  border-bottom: 1px solid #dedede;
+  padding-bottom: 10px;
+  color: #054163;
+  ">{{ event.eventName }} <!-- <small>by ta7seen</small> --></h3>
+  <small style="
+  color:  #b2121d;
+  ">in {{ event.city }}</small>
+  <p>{{ event.desc }}</p>
+    <div class="col-xs-12 text-center" style="
+    margin: auto -15px;">
+    <div class="col-xs-3 container-btn">
+      <a ng-click="attendEvent(event.id)">Going</a>
+    </div>
+    <div class="col-xs-3 container-btn">
+      <a ng-click="interestEvent(event.id)">Intresting</a>
+    </div>
+    <div class="col-xs-3 container-btn">
+      <span style="color: #b2121d"> Cost </span>{{ event.cost }} JOD
+    </div>
+    <div class="col-xs-3 container-btn" ng-if="event.contact">
+      <span style="color: #b2121d"> <i class="fa fa-phone"></i><a href="tel:{{ event.contact }}"> {{ event.contact }} </a></span>
+    </div>
+  </div>
+  </div>
+
+
+  <div class="col-md-2 col-xs-12" style="padding: 0;">
+    <div class="col-md-12 col-xs-4 container-info" style="">
+      <span><b>{{ event.category }}</b></span>
+    </div>
+    <div class="col-md-12 col-xs-4 container-info">
+      <span>Going: {{ event.attend.length }} </span>
+    </div><div class="col-md-12 col-xs-4 container-info">
+    <span>Intrested: {{ event.interest.length }}</span>
+  </div></div>
+</div>    
+
+
+</div>
+
+</div>

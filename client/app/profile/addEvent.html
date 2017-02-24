@@ -1,0 +1,243 @@
+<style>
+#playground-container {
+    height: 500px;
+    overflow: hidden !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+.main{
+  margin:50px 15px;
+}
+
+h1.title { 
+  font-size: 50px;
+  font-family: 'Passion One', cursive; 
+  font-weight: 400; 
+}
+
+hr{
+  width: 10%;
+  color: #fff;
+}
+
+.form-group{
+  margin-bottom: 15px;
+}
+
+label{
+  margin-bottom: 15px;
+}
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 11px;
+    padding-top: 3px;
+}
+
+.main-login{
+  background-color: #fff;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+.form-control {
+    height: auto!important;
+padding: 8px 12px !important;
+}
+.input-group {
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+}
+#button {
+    border: 1px solid #ccc;
+    margin-top: 28px;
+    padding: 6px 12px;
+    color: #666;
+    text-shadow: 0 1px #fff;
+    cursor: pointer;
+    -moz-border-radius: 3px 3px;
+    -webkit-border-radius: 3px 3px;
+    border-radius: 3px 3px;
+    -moz-box-shadow: 0 1px #fff inset, 0 1px #ddd;
+    -webkit-box-shadow: 0 1px #fff inset, 0 1px #ddd;
+    box-shadow: 0 1px #fff inset, 0 1px #ddd;
+    background: #f5f5f5;
+    background: -moz-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #eeeeee));
+    background: -webkit-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+    background: -o-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+    background: -ms-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+    background: linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#eeeeee', GradientType=0);
+}
+.main-center{
+  margin-top: 30px;
+  margin: 0 auto;
+  max-width: 500px;
+    padding: 10px 40px;
+  background:#054163;
+      color: #FFF;
+    text-shadow: none;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+-moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+
+}
+span.input-group-addon i {
+    color: #B2121D;
+    font-size: 17px;
+}
+
+.login-button{
+  margin-top: 5px;
+}
+
+.login-register{
+  font-size: 11px;
+  text-align: center;
+}
+</style>
+
+<div class="container" ng-controller="ProfileController">
+     <div class="row main">
+        <div class="main-login main-center">
+        <h2>Add new event</h2>
+        <h5>add new amazing events in your city!</h5>
+          <form>
+            
+            <div class="form-group">
+              <label for="name" class="cols-sm-2 control-label">Event name</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-info-circle fa" aria-hidden="true"></i></span>
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter your event name" ng-model="event.eventName" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="name" class="cols-sm-2 control-label">Event date</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-calendar fa" aria-hidden="true"></i></span>
+                  <input type="date" class="form-control" name="name" id="name" placeholder="Enter your event name" ng-model="event.date" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="cols-sm-2 control-label">Event location</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
+                  <input type="text" class="form-control" name="email" id="email" placeholder="Enter event location" ng-model="event.location"  required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="cols-sm-2 control-label">Event City</label>
+              <div class="cols-sm-10">
+                <div class="input-group" style="width: 100%">
+                  <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width: 100%;"> 
+                      <span ng-if="event.city === ''" class="ng-scope">choose your city</span>
+                      <span ng-if="event.city !== ''" class="ng-scope">{{ event.city }}</span>
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-model="citySelect" ng-init="event.city=''">
+                      <li><a ng-click="event.city='amman'">Amman</a></li>
+                      <li><a ng-click="event.city='irbid'">Irbid</a></li>
+                      <li><a hng-click="event.city='aqaba'">Aqaba</a></li>
+                      <li><a ng-click="event.city='mafraq'">Mafraq</a></li>
+                      <li><a ng-click="event.city='ajloun'">Ajloun</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="cols-sm-2 control-label">Event category</label>
+              <div class="cols-sm-10">
+                <div class="input-group" style="width: 100%">
+                  <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width: 100%;"> 
+                      <span ng-if="event.category === ''" class="ng-scope">choose event city</span>
+                      <span ng-if="event.category !== ''" class="ng-scope">{{ event.category }}</span>
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu ng-pristine ng-untouched ng-valid" aria-labelledby="dropdownMenu1" ng-model="citySelect" ng-init="event.category=''">
+                      <li><a ng-click="event.category='activities'">Activities</a></li>
+                      <li><a ng-click="event.category='sports'">Sports</a></li>
+                      <li><a hng-click="event.category='music'">Music</a></li>
+                      <li><a ng-click="event.category='it'">IT</a></li>
+                      <li><a ng-click="event.category='info'">Informatic</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div><div class="form-group">
+              <label for="orgName" class="cols-sm-2 control-label">Event description</label>
+              <div class="cols-sm-10">
+                <div class="input-group" style="
+    height: 70px;
+">
+                  <span class="input-group-addon"><i class="fa fa-file-text-o fa" aria-hidden="true" style="
+    font-weight: bold;
+"></i></span>
+                  
+
+<textarea name="Text1" class="form-control" cols="40" rows="5" placeholder="your orgnization name" ng-model="event.desc" style="margin: 0px; width: 376px; height: 170px;"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="cols-sm-2 control-label">Event cost</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-dollar fa" aria-hidden="true" style="font-weight: bold"></i></span>
+                  <input type="number" class="form-control ng-pristine ng-untouched ng-valid" name="username" id="username" placeholder="Event cost (JOD)" ng-model="event.cost" value="0">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="cols-sm-2 control-label">Event contact</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-dollar fa" aria-hidden="true" style="font-weight: bold;"></i></span>
+                  <input type="text" class="form-control ng-pristine ng-untouched ng-valid" name="username" id="username" placeholder="Event contact" ng-model="event.contact">
+                </div>
+              </div>
+            </div>
+
+            
+
+            
+
+            <div class="form-group">
+              <label for="confirm" class="cols-sm-2 control-label">Upload profile image</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-file-image-o" aria-hidden="true"></i></span>
+                  <input type="file" class="form-control" placeholder="Confirm your Password">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group ">
+              <input type="submit" value="Add event" ng-click="addEvent()" id="button" class="btn btn-primary btn-lg btn-block login-button">
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>

@@ -17,6 +17,8 @@ module.exports = {
 
   signup:function (req,res) {
     var user = req.body;
+    // var file = req.files;
+    // console.log(file)
     util.hashpass(user.password,function(hash){
       user.password = hash;
     });
@@ -57,22 +59,22 @@ module.exports = {
     });
   },
 
-  getUserProfile: function (req, res) {
-    var username = req.params.username;
+getUserProfile: function (req, res) {
+  var username = req.params.username;
 
-    Users.reset().query('where', 'username', username).fetch({withRelated: ['event', 'interest', 'attend']}).then( function (found) {
-      if(found.length) {
-        found.models[0].attributes.password =  "";
-        res.json(found);      
-      }  
-      else {
-        res.status(500).send('There is nothing to show')
-      }
-    })
-  },
+  Users.reset().query('where', 'username', username).fetch({withRelated: ['event', 'interest', 'attend']}).then( function (found) {
+    if(found.length) {
+      found.models[0].attributes.password =  "";
+      res.json(found);      
+    }  
+    else {
+      res.status(500).send('There is nothing to show')
+    }
+  })
+},
 
-  addAttending: function (req, res) {
-    var attend = req.body
+addAttending: function (req, res) {
+  var attend = req.body
     // console.log(userId)
     new UserAttendEvent(attend).fetch().then(function(found){
       if(found){

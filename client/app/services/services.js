@@ -3,99 +3,124 @@ angular.module('event.services', [])
 
 .factory('Auth', function ($http, $location, $window) {
  
-  var userSignin = function (user) {
+  var signin = function (user) {
     return $http({
       method: 'POST',
-      url: '/api/userSignin',
+      url: '/api/signin',
       data: user
     })
     .then(function (resp) {
-      return resp.data.token;
+      return resp.data;
     });
   };
 
-  var userSignup = function (user) {
+  var signup = function (user) {
   console.log(user)
     return $http({
       method: 'POST',
-      url: '/api/userSignup',
+      url: '/api/signup',
       data: user
     })
     .then(function (resp) {
-     return resp.data.token;
-    });
-  };
-   var OrgSignin = function (org) {
-    return $http({
-      method: 'POST',
-      url: '/api/orgSignin',
-      data: org
-    })
-    .then(function (resp) {
-
-       return resp.data.token;
+     return resp.data;
     });
   };
 
-  var OrgSignup = function(org){
-    return $http({
-      method: 'POST',
-      url: '/api/OrgSignup',
-      data: org
-    })
-    .then(function (resp) {
-       return resp.data.token;
-    });
-  };
-
-  var createEvent = function(event){
-  	return $http({
-  		method : 'POST',
-  		url :'/api/orgProfile',
-  		data : event
-  	})
-  	.then(function(event){
-  		return event
-  	});
-  }
-  
   var isAuth = function () {
     return !!$window.localStorage.getItem('com.event');
   };
 
   var signout = function () {
     $window.localStorage.removeItem('com.event');
-    $location.path('/signin');
-  };
-
-  var getUserEvent = function (tok){
-    return $http ({
-      method : 'GET',
-      url : '/api/userProfile',
-      params:{tok:tok}
-    }).then(function (resp) {
-      return resp.data;
-    });
-  };
-  var getOrgEvent = function (tok){
-    return $http ({
-      method : 'GET',
-      url : '/api/orgProfile',
-      params:{tok:tok}
-    }).then(function (resp) {
-      return resp.data;
-    });
+    $rootScope.isLoggedIn = false;
+    $location.path('/');
   };
 
   return {
-    userSignin : userSignin ,
-    OrgSignin : OrgSignin,
-    userSignup: userSignup,
-    OrgSignup : OrgSignup,
-    createEvent : createEvent,
+    signin : signin,
+    signup : signup,
     isAuth: isAuth,
-    signout: signout,
-    getUserEvent : getUserEvent,
-    getOrgEvent : getOrgEvent
+    signout: signout
   };
-});
+})
+
+.factory('Events', function($http){
+
+  var addEvent = function(event){
+    return $http({
+      method : 'POST',
+      url :'/api/events',
+      data : event
+    })
+    .then(function(event){
+      return event
+    });
+  };
+
+
+  var getUserProfile = function (username){
+    return $http ({
+      method : 'GET',
+      url : '/api/users/' + username
+    }).then(function (resp) {
+      return resp.data;
+    });
+  };
+
+
+  var getAllEvents = function (){
+    return $http ({
+      method : 'GET',
+      url : '/api/events'
+      // params:{tok:tok}
+    }).then(function (resp) {
+      return resp.data;
+    });
+  };
+
+  var getAllCityEvents = function (city){
+    return $http ({
+      method : 'GET',
+      url : '/api/events/'+city
+      // params:{tok:tok}
+    }).then(function (resp) {
+      return resp.data;
+    });
+  };
+
+  var attendEvent = function(eventId, userId){
+    return $http ({
+      method : 'POST',
+      url : '/api/events/attending',
+      data : {eventId: eventId, userId : userId}
+    }).then(function (resp) {
+      return resp;
+    }).catch(function (err) {
+      if(err)
+      return {status:500};
+    });
+  }
+
+  var interestEvent = function(eventId, userId){
+    return $http ({
+      method : 'POST',
+      url : '/api/events/interested',
+      data : {eventId: eventId, userId : userId}
+    }).then(function (resp) {
+      return resp;
+    }).catch(function (err) {
+      if(err)
+      return {status:500};
+    });
+  }
+
+  return {
+    addEvent : addEvent,
+    getUserProfile : getUserProfile,
+    getAllEvents : getAllEvents,
+    getAllCityEvents : getAllCityEvents,
+    attendEvent : attendEvent,
+    interestEvent : interestEvent
+  }
+  
+})

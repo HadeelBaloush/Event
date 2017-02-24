@@ -3,12 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-
   "scripts": {
-    "postinstall":"npm install -g nodemon",
-    "start":"nodemone server.js"
-    
-
+    "postinstall": "npm install -g nodemon",
+    "start": "nodemone server.js"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -17,6 +14,7 @@
     "bookshelf": "^0.9.1",
     "ejs": "^2.4.1",
     "express": "^4.14.1",
+    "express-fileupload": "^0.1.1",
     "express-partials": "^0.3.0",
     "express-session": "^1.13.0",
     "jwt-simple": "^0.5.1",
